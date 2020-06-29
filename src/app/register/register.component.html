@@ -1,0 +1,67 @@
+<form [formGroup] = "userForm" class = "form-group" (ngSubmit) = "onSubmit()">
+    <p style = "margin-bottom: 50px;" class="h1 mb-1">Sign up</p>
+        <div class = "form-group">
+            <label><b> First Name : </b></label>
+            <input type = "name" formControlName = "firstName" 
+            [ngClass] = "{ 'is-invalid' : checker.firstName.touched && checker.firstName.errors }"
+            class = "form-control" placeholder = "Enter first name">
+            <div *ngIf = "checker.firstName.touched && checker.firstName.errors" style = "color : red">
+                <div *ngIf = "checker.firstName.errors.required"><b>First name is required</b></div>
+            </div>
+        </div>
+        <div class = "form-group">
+            <label><b> Last Name : </b></label>
+            <input type = "name" formControlName = "lastName"
+            [ngClass] = "{ 'is-invalid' : checker.lastName.touched && checker.lastName.errors }"
+            class = "form-control" placeholder = "Enter last name">
+            <div *ngIf = "checker.lastName.touched && checker.lastName.errors" style = "color : red">
+                <div *ngIf = "checker.lastName.errors.required"><b>Last name is required</b></div>
+            </div>
+        </div>
+        <div class = "form-group">
+            <label><b>Email : </b></label>
+            <input type = "email" formControlName = "email"
+            [ngClass] = "{ 'is-invalid' : checker.email.touched && checker.email.errors }" 
+            class = "form-control" placeholder = "Enter email">
+            <div *ngIf = "checker.email.touched && checker.email.errors" style = "color : red">
+                <div *ngIf = "checker.email.errors.required"><b>Email is required</b></div>
+                <div *ngIf = "checker.email.errors.email"><b>Invalid email</b></div>
+            </div>  
+        </div>
+        <div class = "form-group">
+            <label><b>Password : </b></label>
+            <input type = "password" formControlName = "password"
+            class = "form-control"  [ngClass] = "{ 'is-invalid' : checker.password.touched && checker.password.errors }">
+            <div *ngIf = "checker.password.touched && checker.password.errors" style = "color : red">
+                <div *ngIf = "checker.password.errors.required"><b>Password is required</b></div>
+                <div *ngIf = "checker.password.errors.pattern">
+                    <b>Password must be at least 8 characters in length 
+                    and must contain a lowercase, an uppercase letter, 
+                    a digit and a special character</b>
+                </div>
+            </div>
+        </div>
+        <div class = "form-group">
+            <label><b>Confirm password : </b></label>
+            <input type = "password" formControlName = "confirmPassword" class = "form-control"  
+            [ngClass] = "{ 'is-invalid' : checker.confirmPassword.touched && checker.confirmPassword.value != checker.password.value}">
+            <div *ngIf = "checker.confirmPassword.touched && checker.confirmPassword.value != checker.password.value" style = "color : red">
+                <div *ngIf = "checker.confirmPassword.touched && checker.confirmPassword.value != checker.password.value">
+                    <b>Must be same as above</b>
+                </div>
+            </div>
+        </div>
+        <div class = "form-group">
+            <button class = "btn btn-success">Register</button>
+        </div>
+        <hr>
+        <div class = "form-group">
+            <label><b>Already have an account?</b></label>
+            <button style = "margin-left: 10px" class = "btn btn-success" routerLink = "/login">
+                Sign in
+            </button>
+        </div>
+</form>
+
+
+
